@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+echo ">> Setup .ssh"
+if [ -d $HOME/.ssh ]; then
+  echo "$HOME/.ssh already exists, skip .ssh setup"
+else
+  git clone https://teohm@bitbucket.org/teohm/dots-private.git .ssh
+fi
+
+echo ">> Install Homebrew"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+echo ">> Install zsh"
+brew install zsh zsh-completions
+
+echo ">> Install oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+echo ">> Customize oh-my-zsh"
+grep -q "^ZSH_CUSTOM=" $HOME/.zshrc
+if [ $? -ne 0 ]; then
+  echo "ZSH_CUSTOM=\$HOME/.zsh_custom\n\n$(cat $HOME/.zshrc)" > $HOME/.zshrc 
+fi
+
+echo ">> Instal apps"
