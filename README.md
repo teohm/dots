@@ -3,5 +3,5 @@
 ## Install
 
 ```
-bash < <(curl -s https://raw.github.com/teohm/dots/master/bin/dots-install)
+curl -Lks https://raw.github.com/teohm/dots/master/bin/dots-install | bash
 ```
