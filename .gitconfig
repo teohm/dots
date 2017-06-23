@@ -1,0 +1,43 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Huiming Teo
+	email = teohuiming@gmail.com
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/huiming/.gitignore_global
+[alias]
+	new = checkout -b
+	unstage = reset HEAD
+	mff = merge --ff-only
+	mffm = merge --ff-only origin/master
+	mffs = merge --ff-only origin/staging
+	fm = "!git fetch && git mffm"
+	fs = "!git fetch && git mffs"
+	cm = checkout master
+	mmm = "!git checkout master && git fm"
+	mms = "!git checkout staging && git fs"
+	s = status
+	f = fetch
+	ci = commit
+	co = checkout
+	d = diff
+	dc = diff --cached
+	a = add -p
+	up = !git push -u origin `git symbolic-ref --short HEAD`
+	pu = push
+	pf = push -f
+	rom = rebase origin/master
+	pr = !hub pull-request
+	prs = !hub pull-request -b staging
+	upr = !git up && git pr
+	uprs = !git up && git prs
+	pdeploy = !git mmm && production deploy
+        rmmbr = !git branch --merged | grep -v master | xargs git branch -d
+	cleanbr = !git remote prune origin && git rmmbr
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
