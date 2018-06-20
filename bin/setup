@@ -21,6 +21,9 @@ echo "\n>> Setup ssh forwarding"
 ssh-agent
 ssh-add -K ~/.ssh/id_rsa
 
+echo "\n>> Install XCode Command Line Tools"
+xcode-select --install
+
 echo "\n>> Install Homebrew"
 brew --version
 if [ $? -ne 0 ]; then
