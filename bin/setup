@@ -1,0 +1,46 @@
+#!/bin/sh
+
+set -e
+
+# Load useful alias commands
+source $HOME/.zsh_custom/aliases.zsh
+
+echo "\n>> Setup .ssh"
+if [ -d $HOME/.ssh ]; then
+  echo "$HOME/.ssh already exists, skip .ssh setup"
+else
+  git clone https://teohm@bitbucket.org/teohm/dots-private.git .ssh
+  chmod 600 .ssh/id_rsa
+fi
+
+echo "\n>> Update dots repos remote urls"
+git -C $HOME/.ssh remote set-url origin git@bitbucket.org:teohm/dots-private.git
+dots remote set-url origin git@github.com:teohm/dots.git
+
+echo "\n>> Setup ssh forwarding"
+ssh-agent
+ssh-add -K ~/.ssh/id_rsa
+
+echo "\n>> Install XCode Command Line Tools"
+xcode-select --install
+
+echo "\n>> Install Homebrew"
+brew --version
+if [ $? -ne 0 ]; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+echo "\n>> Install zsh"
+brew install zsh zsh-completions
+
+echo "\n>> Install oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+echo "\n>> Customize oh-my-zsh"
+grep -q "^ZSH_CUSTOM=" $HOME/.zshrc
+if [ $? -ne 0 ]; then
+  echo "ZSH_CUSTOM=\$HOME/.zsh_custom\n\n$(cat $HOME/.zshrc)" > $HOME/.zshrc 
+fi
+
+echo "\n>> Instal apps"
+brew bundle
