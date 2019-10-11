@@ -183,6 +183,8 @@
 	<integer>0</integer>
 	<key>HotkeyCode</key>
 	<integer>0</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>0</integer>
 	<key>IRMemory</key>
@@ -242,7 +244,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>263 229 796 473 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 1 1415 876 0 0 1440 877 </string>
+	<string>0 0 1390 877 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>176 70 585 452 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
@@ -1135,7 +1137,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-06-20T10:57:03Z</date>
+	<date>2019-10-02T03:11:21Z</date>
 	<key>SUSkippedVersion</key>
 	<string>3.0.12</string>
 	<key>SavePasteHistory</key>
@@ -1188,9 +1190,11 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.15</string>
+	<string>3.1.beta.5</string>
 </dict>
 </plist>
